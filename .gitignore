@@ -1,0 +1,8 @@
+.terraform/
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
+frontend/node_modules
+/variables.tf
+alvo-ssh-keys.pem
