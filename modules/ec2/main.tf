@@ -34,6 +34,23 @@ resource "aws_instance" "react_app" {
   }
 }
 
+resource "aws_instance" "backend_app" {
+  ami           = "ami-053b0d53c279acc90"
+  instance_type = "t2.micro"
+
+  subnet_id = var.pub_subnet2
+  key_name = aws_key_pair.deployer.key_name
+
+  #   user_data = data.template_file.data_2.rendered
+
+  vpc_security_group_ids = [var.security_group]
+
+  tags = {
+    Name = "backend_app"
+  }
+}
+
+
 
 resource "aws_key_pair" "deployer" {
   key_name = "alvo-ssh-keys"
