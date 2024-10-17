@@ -3,7 +3,6 @@ resource "aws_instance" "jump_host" {
   instance_type = "t2.micro"
 
   subnet_id = var.pub_subnet
-  //This is interpolation or directive
   key_name = aws_key_pair.deployer.key_name
   user_data = <<-EOF
             #!/bin/bash
@@ -19,6 +18,21 @@ resource "aws_instance" "jump_host" {
   }
 }
 
+resource "aws_instance" "react_app" {
+  ami           = "ami-053b0d53c279acc90"
+  instance_type = "t2.micro"
+
+  subnet_id = var.pub_subnet2
+  key_name = aws_key_pair.deployer.key_name
+
+  #   user_data = data.template_file.data_2.rendered
+
+  vpc_security_group_ids = [var.security_group]
+
+  tags = {
+    Name = "frontend_app"
+  }
+}
 
 
 resource "aws_key_pair" "deployer" {
