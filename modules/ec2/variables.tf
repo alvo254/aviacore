@@ -9,3 +9,11 @@ variable "security_group" {
 variable "pub_subnet2" {
   type = string
 }
+
+variable "private_subnet" {
+  type = string
+}
+
+variable "testing_subnet" {
+  type = string
+}

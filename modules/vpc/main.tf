@@ -39,6 +39,36 @@ resource "aws_subnet" "aviacore-pub-sub2" {
   }
 }
 
+
+resource "aws_subnet" "aviacore-priv-sub1" {
+  vpc_id                          = aws_vpc.aviacore.id
+  cidr_block                      = var.private_subnet
+  availability_zone               = data.aws_availability_zones.available_zones.names[1]
+  assign_ipv6_address_on_creation = true
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.aviacore.ipv6_cidr_block, 8, 3)
+
+
+  tags = {
+    Name = "${var.project}-${var.env}-private-sub-1"
+  }
+}
+
+
+resource "aws_subnet" "aviacore-test-sub" {
+  vpc_id                          = aws_vpc.aviacore.id
+  cidr_block                      = var.test_subnet
+  map_public_ip_on_launch         = true
+  availability_zone               = data.aws_availability_zones.available_zones.names[1]
+  assign_ipv6_address_on_creation = true
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.aviacore.ipv6_cidr_block, 8, 4)
+
+
+  tags = {
+    Name = "${var.project}-${var.env}-test-sub-2"
+  }
+}
+
+
 resource "aws_internet_gateway" "aviacore-igw" {
   vpc_id = aws_vpc.aviacore.id
 

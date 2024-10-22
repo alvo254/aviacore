@@ -9,3 +9,12 @@ output "pub_sub1" {
 output "pub_sub2" {
   value = aws_subnet.aviacore-pub-sub2.id
 }
+
+output "private_subnet" {
+  value = aws_subnet.aviacore-priv-sub1.id
+}
+
+
+output "testing_subnet" {
+  value = aws_subnet.aviacore-test-sub.id
+}
