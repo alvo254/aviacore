@@ -14,6 +14,6 @@ variable "private_subnet" {
   type = string
 }
 
-variable "testing_subnet" {
+variable "private_subnet2" {
   type = string
 }

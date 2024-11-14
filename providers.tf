@@ -11,10 +11,10 @@
 
 terraform {
   required_providers {
-    # aviatrix = {
-    #   source = "aviatrixsystems/aviatrix"
-    #   version = "3.1.4"
-    # }
+    aviatrix = {
+      source = "aviatrixsystems/aviatrix"
+      version = "3.1.4"
+    }
 
     aws = {
       source  = "hashicorp/aws"
@@ -26,12 +26,12 @@ terraform {
 
 
 provider "aws" {
-  profile = "default"
+  profile = "aviatrix"
   region  = "us-east-1"
 }
 
-# provider "aviatrix" {
-#   controller_ip = var.controller_ip
-#   username      = var.username
-#   password      = var.password
-# }
+provider "aviatrix" {
+  controller_ip = var.controller_ip
+  username      = var.username
+  password      = var.password
+}

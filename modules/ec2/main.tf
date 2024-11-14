@@ -1,4 +1,5 @@
-resource "aws_instance" "jump_host" {
+#-----------------------------------------------------------------------Front end------------------------------------------------------------------------ 
+resource "aws_instance" "sap_flori_sim" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
 
@@ -8,13 +9,10 @@ resource "aws_instance" "jump_host" {
             #!/bin/bash
             echo "${tls_private_key.RSA.public_key_openssh}" >> /home/ec2-user/.ssh/authorized_keys
             EOF
-
-  #   user_data = data.template_file.data_2.rendered
-
   vpc_security_group_ids = [var.security_group]
 
   tags = {
-    Name = "jump_host"
+    Name = "SAP flori-sim"
   }
 }
 
@@ -30,11 +28,12 @@ resource "aws_instance" "react_app" {
   vpc_security_group_ids = [var.security_group]
 
   tags = {
-    Name = "frontend_app"
+    Name = "customer-fascing-react"
   }
 }
 
-resource "aws_instance" "backend_app" {
+
+resource "aws_instance" "flori_sim" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
 
@@ -46,27 +45,37 @@ resource "aws_instance" "backend_app" {
   vpc_security_group_ids = [var.security_group]
 
   tags = {
-    Name = "backend_app"
+    Name = "redundant_flori-sim"
   }
 }
+# -------------------------------------------------------------end of frontend------------------------------------------------------------------
 
 
-
-resource "aws_instance" "testing_app" {
+#---------------------------------------------------------backend--------------------------------------------------------------------------
+resource "aws_instance" "hana" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
-
-  subnet_id = var.testing_subnet
-  key_name = aws_key_pair.deployer.key_name
-
-  #   user_data = data.template_file.data_2.rendered
-
+  subnet_id = var.private_subnet
   vpc_security_group_ids = [var.security_group]
 
   tags = {
-    Name = "testing_app"
+    Name = "4HANA-sim"
   }
 }
+
+
+resource "aws_instance" "redundant-hana" {
+  ami           = "ami-053b0d53c279acc90"
+  instance_type = "t2.micro"
+  subnet_id = var.private_subnet2
+  vpc_security_group_ids = [var.security_group]
+
+  tags = {
+    Name = "redundant-4HANA-sim"
+  }
+}
+#---------------------------------------------------------------end of backend-------------------------------------------------------------
+
 
 
 resource "aws_instance" "secret_app" {

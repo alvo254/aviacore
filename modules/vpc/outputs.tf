@@ -14,7 +14,8 @@ output "private_subnet" {
   value = aws_subnet.aviacore-priv-sub1.id
 }
 
-
-output "testing_subnet" {
-  value = aws_subnet.aviacore-test-sub.id
+output "private_subnet2" {
+  value = aws_subnet.aviacore-priv-sub2.id
 }
+
+

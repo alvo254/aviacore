@@ -18,30 +18,36 @@ terraform {
 # }
 
 
+
+//This spoke gateway manages the aviacore-prod-vpc 
 resource "aviatrix_spoke_gateway" "spoke_gateway_1" {
     cloud_type = 1
     account_name = "aws-account"
-    gw_name = "avaicore-gw"
-    vpc_id = "vpc-0b5162623c6f0470d~~aviacore-prod-vpc"
+    gw_name = "aws-us-east-1-spoke-1"
+    vpc_id = var.vpc_id
     vpc_reg = "us-east-1 (N. Virginia)"
     gw_size = "t3.medium"
     subnet = "172.16.0.0/22"
     manage_ha_gateway = false
 }
 
+# For HA
+resource "aviatrix_spoke_ha_gateway" "spoke_ha_gateway_1" {
+    primary_gw_name = aviatrix_spoke_gateway.spoke_gateway_1.gw_name
+    subnet = "172.16.4.0/22"
+    depends_on = [ 
+        aviatrix_spoke_gateway.spoke_gateway_1
+    ]
+}
+
+
 resource "aviatrix_spoke_transit_attachment" "spoke_transit_attachment_1" {
-    spoke_gw_name = "avaicore-gw"
+    spoke_gw_name = aviatrix_spoke_gateway.spoke_gateway_1.gw_name
     transit_gw_name = "aws-us-west-2-transit"
     depends_on = [ 
         aviatrix_spoke_gateway.spoke_gateway_1
     ]
 }
 
-resource "aviatrix_spoke_ha_gateway" "spoke_ha_gateway_1" {
-    primary_gw_name = "avaicore-gw"
-    subnet = "172.16.8.0/22"
-    depends_on = [ 
-        aviatrix_spoke_gateway.spoke_gateway_1
-    ]
-}
+
 
