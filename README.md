@@ -45,9 +45,6 @@ This project uses Terraform to configure and deploy:
 2. **AWS Account:** Ensure you have an AWS account and an IAM user with permissions for VPC, EC2, and Aviatrix resources.
 3. **Installed aviatrix controller:** I will not be showing this as the controller is already installed but refer to [https://docs.aviatrix.com/documentation/v7.1/getting-started/getting-started-guide-aws.html?expand=true#:~:text=Deploy%20with%20Terraform,available%2C%20the%20deployment%20will%20fail.].
 
-### Aviatrix Controller
-
-Ensure an Aviatrix controller is set up and configured in your AWS account. Refer to the documentation in `Docs/docs.md` for detailed instructions.
 
 ---
 
