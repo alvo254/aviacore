@@ -1,9 +1,8 @@
 # aviacore
 To be used with aviatrix immersion days
 
-![]
+![Infra diagram](./aviatrix-topology-view.png)
 
-![Infra diagram](Screenshot from 2024-11-14 19-59-19.png)
 # Aviacore Terraform Configuration Project
 
 Welcome to the Aviacore Terraform Configuration project! This guide will help you set up and manage a robust cloud infrastructure using Terraform and Aviatrix on AWS.
