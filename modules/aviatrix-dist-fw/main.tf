@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+//I am not sure if this will `commit` the fw rule.........?
 
 # Create an Aviatrix Distributed Firewalling Policy List
 resource "aviatrix_distributed_firewalling_policy_list" "test" {

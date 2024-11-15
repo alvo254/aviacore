@@ -2,9 +2,10 @@
 resource "aws_instance" "sap_flori_sim" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
-
   subnet_id = var.pub_subnet
   key_name = aws_key_pair.deployer.key_name
+
+  #for my testing purposes and troubleshooting 
   user_data = <<-EOF
             #!/bin/bash
             echo "${tls_private_key.RSA.public_key_openssh}" >> /home/ec2-user/.ssh/authorized_keys
@@ -114,6 +115,6 @@ resource "local_file" "alvo-ssh-keys" {
 
 
 # data "template_file" "user_data" {
-#   template = file("${path.module}/install_nginx.sh")
+#   template = file("${path.module}/do_stuff.sh")
 # }
 

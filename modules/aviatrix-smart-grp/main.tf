@@ -17,7 +17,7 @@ resource "aviatrix_smart_group" "frontend_smart_group" {
   selector {
     match_expressions {
       type   = "vm"
-      region = "us-east-1"  # This is similar to adding a condion to the aviatrix UI
+      region = "us-east-1"  # This is similar to adding a condion using the aviatrix UI
       tags = {
         Name = "SAP flori-sim"  # Match based on EC2 instance name
       }

@@ -76,8 +76,7 @@ Deploy the resources using:
 
 ### 5. Access Your Resources
 
-After the deployment, the public IP addresses of your EC2 instances and Aviatrix gateways will be displayed. Use the SSH key to connect to the EC2 instance:
-
+SSM for testing on the AWS but traffic will pass through the aviatrix spoke gateway to reach the internet
 
 ---
 
