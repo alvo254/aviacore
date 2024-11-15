@@ -84,3 +84,5 @@ resource "aws_security_group" "aviacore-sg" {
   }
 
 }
+
+//The rest to be added
