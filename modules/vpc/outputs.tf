@@ -19,3 +19,6 @@ output "private_subnet2" {
 }
 
 
+output "pub_sub1_cidr" {
+  value = aws_subnet.aviacore-pub-sub1.cidr_block
+}

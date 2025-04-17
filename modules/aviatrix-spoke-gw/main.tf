@@ -27,7 +27,7 @@ resource "aviatrix_spoke_gateway" "spoke_gateway_1" {
     vpc_id = var.vpc_id
     vpc_reg = "us-east-1 (N. Virginia)"
     gw_size = "t3.medium"
-    subnet = "172.16.0.0/22"
+    subnet = var.pub_sub1_cidr
     manage_ha_gateway = false
 }
 

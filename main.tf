@@ -21,6 +21,7 @@ module "ec2" {
 module "aviatrix-spoke-gw" {
   source = "./modules/aviatrix-spoke-gw"
   vpc_id = module.vpc.vpc_id
+  pub_sub1_cidr = module.vpc.pub_sub1_cidr
 }
 
 
